@@ -35,6 +35,7 @@ func InitDatabase() {
 		fmt.Println(dbErrorMessage)
 	}
 	fmt.Println(db)
+	db.LogMode(true)
 }
 
 func GetDB() *gorm.DB {
