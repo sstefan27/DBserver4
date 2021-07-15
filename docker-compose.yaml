@@ -1,0 +1,20 @@
+version: '1'
+
+services:
+    postgres:
+        image: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=problem4
+    golang:
+        build: .
+        restart: on-failure
+        environment:
+            - DATABASE_URL=postgres://postgres:password@goproblem4_postgres_1:5432/problem4?sslmode=disable
+        ports:
+            - "8080:8080"
+        depends_on:
+            - postgres
